@@ -10,10 +10,6 @@ import javax.persistence.*
 
 
 @Entity
-@Builder
-@EqualsAndHashCode
-@Getter
-@Setter
 class Hero {
 
     @Id

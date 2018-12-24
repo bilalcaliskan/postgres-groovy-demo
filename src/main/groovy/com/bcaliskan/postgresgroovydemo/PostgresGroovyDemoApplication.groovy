@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 class PostgresGroovyDemoApplication {
 
     static void main(String[] args) {
-        SpringApplication.run(PostgresGroovyDemoApplication.class, args);
+        SpringApplication.run(PostgresGroovyDemoApplication.class, args)
     }
 
 }

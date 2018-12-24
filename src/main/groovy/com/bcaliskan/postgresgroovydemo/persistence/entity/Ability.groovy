@@ -10,10 +10,6 @@ import javax.persistence.*
 
 
 @Entity // tell persistence provider 'Ability' is a persistence entity
-@Builder
-@EqualsAndHashCode
-@Getter
-@Setter
 class Ability {
 
     @Id // tell persistence provider 'id' is primary key
@@ -30,4 +26,5 @@ class Ability {
     )
     @JsonIgnore // tell Spring to ignore 'hero' when creating JSON
     Hero hero
+
 }

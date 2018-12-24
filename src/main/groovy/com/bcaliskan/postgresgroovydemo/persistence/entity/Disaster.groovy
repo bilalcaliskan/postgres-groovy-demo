@@ -9,10 +9,6 @@ import javax.persistence.*
 
 
 @Entity
-@Builder
-@EqualsAndHashCode
-@Getter
-@Setter
 class Disaster {
 
     @Id
