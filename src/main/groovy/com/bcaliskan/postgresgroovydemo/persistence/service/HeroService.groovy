@@ -74,7 +74,7 @@ class HeroService {
             }
         }
 
-        heroRepository.save(persisted)
+        return heroRepository.save(persisted)
     }
 
     boolean deleteById(long id) {
