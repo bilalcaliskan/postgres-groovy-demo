@@ -23,27 +23,27 @@ class HeroController {
     HeroService heroService
 
 
-    @GetMapping('')
+    @GetMapping('heroes')
     List findAll() {
         return heroService.findAll()
     }
 
-    @GetMapping('{id}')
+    @GetMapping('heroes/{id}')
     Hero findOne(@PathVariable long id) {
         return heroService.findByIdOrReturnNull(id)
     }
 
-    @PostMapping('')
+    @PostMapping('heroes')
     String create(@RequestBody Hero hero) {
         return JsonOutput.toJson(new Response("createHero", heroService.save(hero)))
     }
 
-    @PutMapping('')
+    @PutMapping('heroes')
     String update(@RequestBody Hero hero) {
         return JsonOutput.toJson(new Response("updateHero", heroService.update(hero)))
     }
 
-    @DeleteMapping('{id}')
+    @DeleteMapping('heroes/{id}')
     String deleteById(@PathVariable long id) {
         return JsonOutput.toJson(new Response("deleteHero", heroService.deleteById(id)))
     }

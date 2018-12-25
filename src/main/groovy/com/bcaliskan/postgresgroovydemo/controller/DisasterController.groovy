@@ -23,42 +23,42 @@ class DisasterController {
     DisasterService disasterService
 
 
-    @GetMapping('')
+    @GetMapping('disasters')
     List findAll() {
         return disasterService.findAll()
     }
 
-    @GetMapping('{id}')
+    @GetMapping('disasters/{id}')
     Disaster findById(@PathVariable long id) {
         return disasterService.findByIdOrReturnNull(id)
     }
 
-    @PostMapping('create-disaster')
+    @PostMapping('disasters')
     String create(@RequestBody Disaster disaster) {
         return JsonOutput.toJson(new Response("createDisaster", disasterService.save(disaster)))
     }
 
-    @PutMapping('update-disaster/{id}')
+    @PutMapping('disasters/{id}')
     String update(@RequestBody Disaster disaster) {
         return JsonOutput.toJson(new Response("updateDisaster", disasterService.update(disaster)))
     }
 
-    @DeleteMapping('delete-disaster/{id}')
+    @DeleteMapping('disasters/{id}')
     String deleteById(@PathVariable long id) {
         return JsonOutput.toJson(new Response("deleteDisaster", disasterService.deleteById(id)))
     }
 
-    @PostMapping('assign-hero/{id}/hero/{heroId}')
+    @PostMapping('disasters/{id}/hero/{heroId}')
     String assignHero(@PathVariable long id, @PathVariable long heroId) {
         return JsonOutput.toJson(new Response("assignHero", disasterService.assignHero(id, heroId)))
     }
 
-    @DeleteMapping('remove-hero/{id}/hero/{heroId}')
+    @DeleteMapping('disasters/{id}/hero/{heroId}')
     String removeHero(@PathVariable long id, @PathVariable long heroId) {
         return JsonOutput.toJson(new Response("removeHero", disasterService.removeHero(id, heroId)))
     }
 
-    @PostMapping('resolve-disaster/{id}')
+    @PostMapping('disasters/{id}')
     String resolveDisaster(@PathVariable long id) {
         return JsonOutput.toJson(new Response("resolveDisaster", disasterService.resolve(id)))
     }
