@@ -42,7 +42,7 @@ class HeroService {
     }
 
     Hero update(Hero hero) {
-        final Hero persisted = findByIdOrThrowException(hero.id)
+        Hero persisted = findByIdOrThrowException(hero.id)
         persisted.with {
             name = hero.name
         }
