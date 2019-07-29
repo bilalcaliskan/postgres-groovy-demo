@@ -5,7 +5,7 @@ set -ex
 USERNAME=bilalcaliskan
 EMAIL=bilalccaliskan@gmail.com
 PROJECT=postgres-groovy-demo
-RELEASE_VERSION=`grep RELEASE_VERSION VERSION | cut -d "=" -f2`
+RELEASE_VERSION=`grep RELEASE_VERSION version.properties | cut -d "=" -f2`
 CLONE_URL=git@gitlab.com:vpnbeast/backend/${PROJECT}.git
 BRANCH=master
 
