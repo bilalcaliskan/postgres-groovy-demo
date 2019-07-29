@@ -1,26 +1,52 @@
+---
+### Default Properties ###
+spring:
+  jpa:
+    show-sql: false
+
 server:
-  port: 8080
+  port: ${SERVER_PORT:8080}
 
 management:
   server:
-    port: 8081
+    port: ${SERVER_PORT:8081}
   endpoints:
     enabled-by-default: true
   endpoint:
     health:
       show-details: always
 
+---
+### Properties for dev profile
+### Dev profile is used on the following environments:
+###  a. During local development done by developers
 spring:
+  profiles: dev
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres_demo
-    username: demo_user
-    password: demo_user
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/postgres_demo}
+    username: ${DB_USERNAME:demo_user}
+    password: ${DB_PASSWORD:demo_user}
   jpa:
     properties:
       hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+      format_sql: true
     generate-ddl: true
     hibernate:
       ddl-auto: update
     show-sql: true
 
+---
+### Properties for test profile
+### Test profile is used on the following environments:
+###  a. Local integration tests done by developers
+###  b. Remote integration tests done automatically by CI servers
+spring:
+  profiles: test
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/postgres_demo}
+    username: ${DB_USERNAME:demo_user}
+    password: ${DB_PASSWORD:demo_user}
 
