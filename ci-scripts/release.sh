@@ -3,7 +3,7 @@
 set -ex
 
 IMAGE=postgres-groovy-demo
-RELEASE_VERSION=`grep RELEASE_VERSION VERSION | cut -d "=" -f2`
+RELEASE_VERSION=`grep RELEASE_VERSION version.properties | cut -d "=" -f2`
 BRANCH=master
 
 echo "version: $RELEASE_VERSION"
