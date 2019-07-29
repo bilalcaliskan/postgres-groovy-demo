@@ -1,0 +1,38 @@
+image: bilalcaliskan/docker-base:latest
+services:
+- docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay
+
+stages:
+- test
+- build
+- release
+
+
+unit-test:
+  stage: test
+  script:
+  - mvn clean verify -B
+  only:
+    refs:
+    - master
+
+maven-build:
+  stage: build
+  before_script:
+  - chmod +x ci-scripts/build.sh
+  script:
+  - /bin/sh ci-scripts/build.sh
+  only:
+    refs:
+    - master
+
+docker-release:
+  stage: release
+  script:
+  - /bin/sh ci-scripts/release.sh
+  only:
+    refs:
+    - master
