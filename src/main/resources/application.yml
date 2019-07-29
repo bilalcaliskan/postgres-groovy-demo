@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+management:
+  server:
+    port: 8081
+  endpoints:
+    enabled-by-default: true
+  endpoint:
+    health:
+      show-details: always
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres_demo
+    username: demo_user
+    password: demo_user
+  jpa:
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+
