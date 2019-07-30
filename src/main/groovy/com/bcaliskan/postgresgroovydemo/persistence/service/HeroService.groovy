@@ -1,6 +1,5 @@
 package com.bcaliskan.postgresgroovydemo.persistence.service
 
-
 import com.bcaliskan.postgresgroovydemo.persistence.entity.HeroEntity
 import com.bcaliskan.postgresgroovydemo.persistence.repository.HeroRepository
 import groovy.util.logging.Slf4j

@@ -1,14 +1,11 @@
 package com.bcaliskan.postgresgroovydemo.persistence.service
 
 import com.bcaliskan.postgresgroovydemo.model.UserEntityRequest
-import com.bcaliskan.postgresgroovydemo.persistence.entity.HeroEntity
 import com.bcaliskan.postgresgroovydemo.persistence.entity.UserEntity
 import com.bcaliskan.postgresgroovydemo.persistence.repository.UserRepository
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
-
 import java.time.LocalDateTime
 
 

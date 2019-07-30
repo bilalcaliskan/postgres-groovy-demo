@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository
 
 
 @Repository
-// JpaRepository extends PagingAndSortingRepository
 interface HeroRepository extends JpaRepository<HeroEntity, Long> {
 
 }

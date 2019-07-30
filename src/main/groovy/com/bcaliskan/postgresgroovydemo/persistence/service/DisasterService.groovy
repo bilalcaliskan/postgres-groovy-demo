@@ -1,6 +1,5 @@
 package com.bcaliskan.postgresgroovydemo.persistence.service
 
-
 import com.bcaliskan.postgresgroovydemo.persistence.entity.DisasterEntity
 import com.bcaliskan.postgresgroovydemo.persistence.repository.DisasterRepository
 import groovy.util.logging.Slf4j
