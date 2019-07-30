@@ -1,6 +1,7 @@
 package com.bcaliskan.postgresgroovydemo.persistence.service
 
-import com.bcaliskan.postgresgroovydemo.persistence.entity.Disaster
+
+import com.bcaliskan.postgresgroovydemo.persistence.entity.DisasterEntity
 import com.bcaliskan.postgresgroovydemo.persistence.repository.DisasterRepository
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
@@ -24,24 +25,24 @@ class DisasterService {
         return disasterRepository.findAll((Sort.by(Sort.Order.desc("time"))))
     }
 
-    Disaster findByIdOrReturnNull(Long id) {
+    DisasterEntity findByIdOrReturnNull(Long id) {
         disasterRepository.findById(id).orElse(null)
     }
 
-    Disaster findByIdOrThrowException(Long id) {
+    DisasterEntity findByIdOrThrowException(Long id) {
         return disasterRepository.findById(id).orElseThrow({
             new EntityNotFoundException()
         })
     }
 
-    boolean save(Disaster disaster) {
+    boolean save(DisasterEntity disaster) {
         disaster.isResolved = false
         if (disasterRepository.save(disaster))
             return true
         return false
     }
 
-    boolean update(Disaster disaster) {
+    boolean update(DisasterEntity disaster) {
         def persisted = findByIdOrThrowException(disaster.id)
         persisted.with {
             title = disaster.title

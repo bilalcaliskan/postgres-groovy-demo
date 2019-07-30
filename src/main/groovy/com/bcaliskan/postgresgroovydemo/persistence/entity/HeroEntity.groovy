@@ -5,7 +5,7 @@ import javax.persistence.*
 
 
 @Entity
-class Hero {
+class HeroEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,16 +13,16 @@ class Hero {
 
     String name
 
-    @OneToMany( // tell persistence provider 'abilities' is one-to-many relation with Ability
+    @OneToMany( // tell persistence provider 'abilities' is one-to-many relation with AbilityEntity
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL, // cascade all operation to 'abilities' values
-            orphanRemoval = true, // auto delete Ability entity that has no Hero
+            orphanRemoval = true, // auto delete AbilityEntity entity that has no HeroEntity
             mappedBy = 'hero' // mark for bi-directional relation
     )
-    List<Ability> abilities
+    List<AbilityEntity> abilities
 
     @ManyToMany(mappedBy = 'heroes')
     @JsonIgnore
-    Set<Disaster> disasters
+    Set<DisasterEntity> disasters
 
 }

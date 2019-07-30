@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.*
 
 
-@Entity // tell persistence provider 'Ability' is a persistence entity
-class Ability {
+@Entity // tell persistence provider 'AbilityEntity' is a persistence entity
+class AbilityEntity {
 
     @Id // tell persistence provider 'id' is primary key
     @GeneratedValue( // tell persistence provider that value of 'id' will be generated
@@ -15,11 +15,11 @@ class Ability {
 
     String name
 
-    @ManyToOne( // tell persistence provider 'hero' is a many-to-one relation with Ability
-            fetch = FetchType.LAZY, // do not fetch value when Ability is loaded
+    @ManyToOne( // tell persistence provider 'hero' is a many-to-one relation with AbilityEntity
+            fetch = FetchType.LAZY, // do not fetch value when AbilityEntity is loaded
             optional = false // will make the foreign key mandatory
     )
     @JsonIgnore // tell Spring to ignore 'hero' when creating JSON
-    Hero hero
+    HeroEntity hero
 
 }

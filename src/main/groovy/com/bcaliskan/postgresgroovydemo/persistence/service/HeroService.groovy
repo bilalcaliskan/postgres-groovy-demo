@@ -1,6 +1,7 @@
 package com.bcaliskan.postgresgroovydemo.persistence.service
 
-import com.bcaliskan.postgresgroovydemo.persistence.entity.Hero
+
+import com.bcaliskan.postgresgroovydemo.persistence.entity.HeroEntity
 import com.bcaliskan.postgresgroovydemo.persistence.repository.HeroRepository
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
@@ -17,21 +18,21 @@ class HeroService {
     HeroRepository heroRepository;
 
 
-    List<Hero> findAll() {
+    List<HeroEntity> findAll() {
         return heroRepository.findAll(Sort.by('name')).asList()
     }
 
-    Hero findByIdOrReturnNull(long id) {
+    HeroEntity findByIdOrReturnNull(long id) {
         return heroRepository.findById(id).orElse(null)
     }
 
-    Hero findByIdOrThrowException(long id) {
+    HeroEntity findByIdOrThrowException(long id) {
         return heroRepository.findById(id).orElseThrow({
             new EntityNotFoundException()
         })
     }
 
-    Hero save(Hero hero) {
+    HeroEntity save(HeroEntity hero) {
         // assign hero to every abilities
         hero.abilities.each { ability ->
             log.info("adding {} as ability to the hero {}", ability.name, hero.name)
@@ -41,8 +42,8 @@ class HeroService {
         return heroRepository.save(hero)
     }
 
-    Hero update(Hero hero) {
-        Hero persisted = findByIdOrThrowException(hero.id)
+    HeroEntity update(HeroEntity hero) {
+        HeroEntity persisted = findByIdOrThrowException(hero.id)
         persisted.with {
             name = hero.name
         }
