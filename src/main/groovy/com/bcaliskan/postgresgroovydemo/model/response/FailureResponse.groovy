@@ -1,4 +1,4 @@
-package com.bcaliskan.postgresgroovydemo.model
+package com.bcaliskan.postgresgroovydemo.model.response
 
 class FailureResponse extends BaseResponse {
 

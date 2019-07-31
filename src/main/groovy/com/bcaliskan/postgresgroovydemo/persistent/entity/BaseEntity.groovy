@@ -1,4 +1,4 @@
-package com.bcaliskan.postgresgroovydemo.persistence.entity
+package com.bcaliskan.postgresgroovydemo.persistent.entity
 
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
@@ -11,9 +11,8 @@ import javax.persistence.MappedSuperclass
 import java.time.LocalDateTime
 
 
-
-@EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 abstract class BaseEntity {
 
     @Id

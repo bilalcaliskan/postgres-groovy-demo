@@ -1,10 +1,10 @@
 package com.bcaliskan.postgresgroovydemo.controller
 
-import com.bcaliskan.postgresgroovydemo.model.BaseResponse
-import com.bcaliskan.postgresgroovydemo.model.FailureResponse
-import com.bcaliskan.postgresgroovydemo.model.SuccessResponse
-import com.bcaliskan.postgresgroovydemo.model.UserEntityRequest
-import com.bcaliskan.postgresgroovydemo.persistence.service.UserService
+import com.bcaliskan.postgresgroovydemo.model.response.BaseResponse
+import com.bcaliskan.postgresgroovydemo.model.response.FailureResponse
+import com.bcaliskan.postgresgroovydemo.model.response.SuccessResponse
+import com.bcaliskan.postgresgroovydemo.model.request.UserEntityRequest
+import com.bcaliskan.postgresgroovydemo.persistent.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -31,8 +31,19 @@ class UserController {
 
     @PostMapping('create-user')
     ResponseEntity<BaseResponse> createUser(@Valid @RequestBody UserEntityRequest request) {
-        return userService.createUser(request) ? new ResponseEntity<SuccessResponse>(new SuccessResponse("createUser", true), HttpStatus.OK)
-                : new ResponseEntity<FailureResponse>(new FailureResponse("createUser", false, "Unknown error occured!"), HttpStatus.INTERNAL_SERVER_ERROR)
+        if (userService.createUser(request)) {
+            return new ResponseEntity<>(new SuccessResponse("createUser", true), HttpStatus.OK)
+        } else {
+            return new ResponseEntity<>(new FailureResponse("createUser", false, "Unknown error occured!"), HttpStatus.INTERNAL_SERVER_ERROR)
+        }
+    }
+
+    @PostMapping("login")
+    ResponseEntity<BaseResponse> login(@Valid @RequestBody UserEntityRequest request) {
+        if (userService.login(request))
+            return new ResponseEntity<>(new SuccessResponse("login", true), HttpStatus.OK)
+        else
+            return new ResponseEntity<>(new FailureResponse("login", false, "Unknown error occured!"), HttpStatus.INTERNAL_SERVER_ERROR)
     }
 
 }

@@ -1,8 +1,8 @@
-package com.bcaliskan.postgresgroovydemo.persistence.service
+package com.bcaliskan.postgresgroovydemo.persistent.service
 
-import com.bcaliskan.postgresgroovydemo.model.UserEntityRequest
-import com.bcaliskan.postgresgroovydemo.persistence.entity.UserEntity
-import com.bcaliskan.postgresgroovydemo.persistence.repository.UserRepository
+import com.bcaliskan.postgresgroovydemo.model.request.UserEntityRequest
+import com.bcaliskan.postgresgroovydemo.persistent.entity.UserEntity
+import com.bcaliskan.postgresgroovydemo.persistent.repository.UserRepository
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -35,6 +35,26 @@ class UserService {
 
     List<UserEntity> getAllUsers() {
         return userRepository.findAll().asList()
+    }
+
+    boolean login(UserEntityRequest request) {
+        if (isUserExists(request))
+            return isPasswordValid(request)
+        return false
+    }
+
+    boolean isUserExists(UserEntityRequest request) {
+        return Objects.nonNull(getUserByName(request.userName))
+    }
+
+    boolean isPasswordValid(UserEntityRequest request) {
+        final UserEntity userEntity = getUserByName(request.userName)
+        return userEntity.userPass == request.userPass
+    }
+
+    UserEntity getUserByName(String userName) {
+        final Optional<UserEntity> userEntity = userRepository.findByUserName(userName)
+        return userEntity.orElseThrow({ -> new Exception("User not found!")})
     }
 
 }
