@@ -8,8 +8,8 @@ import javax.validation.constraints.Size
 import java.time.LocalDateTime
 
 
-@Table(name = "tbl_users")
 @Entity
+@Table(name = "tbl_users")
 class UserEntity extends BaseEntity {
 
     String uuid

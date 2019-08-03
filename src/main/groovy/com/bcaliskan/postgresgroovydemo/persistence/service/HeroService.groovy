@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service
 import javax.persistence.EntityNotFoundException
 
 
-@Service
 @Slf4j
+@Service
 class HeroService {
 
     @Autowired

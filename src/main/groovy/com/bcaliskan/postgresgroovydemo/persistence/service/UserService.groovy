@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 
 
-@Service
 @Slf4j
+@Service
 class UserService {
 
     @Autowired

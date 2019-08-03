@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.*
 
 
-@Entity // tell persistence provider 'AbilityEntity' is a persistence entity
+@Entity
 class AbilityEntity {
 
     @Id // tell persistence provider 'id' is primary key
